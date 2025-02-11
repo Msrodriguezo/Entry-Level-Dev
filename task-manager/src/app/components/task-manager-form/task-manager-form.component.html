@@ -1,1 +1,69 @@
-<p>task-manager-form works!</p>
+<div class="container mt-5">
+    <h1>Task Manager</h1>
+    <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+      <!-- Campo Título -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          [(ngModel)]="formData.title"
+          required
+        />
+      </div>
+  
+      <!-- Campo Descripción -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          [(ngModel)]="formData.description"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+  
+      <!-- Campo Fecha -->
+      <div class="mb-3">
+        <label for="date" class="form-label">Expiration date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          name="date"
+          [(ngModel)]="formData.date"
+          required
+        />
+      </div>
+  
+      <!-- Campo Status (Selector) -->
+      <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select
+          class="form-select"
+          id="status"
+          name="status"
+          [(ngModel)]="formData.status"
+          required
+        >
+          <option *ngFor="let status of statusOptions" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Botones -->
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">
+          Send
+        </button>
+      </div>
+    </form>
+  </div>

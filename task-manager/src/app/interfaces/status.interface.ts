@@ -1,2 +1,1 @@
-export interface Status {
-}
+export type TaskStatus = 'To Do' | 'In Progress' | 'Done';

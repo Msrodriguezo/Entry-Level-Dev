@@ -1,0 +1,109 @@
+<div class="container mt-5">
+  <h1>Task Manager</h1>
+  <!-- Search Bar -->
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search tasks by title..."
+      [(ngModel)]="searchText"
+    />
+  </div>
+
+  <!-- Buttons -->
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-danger me-2" (click)="deleteSelectedTasks()" [disabled]="selectedTasks.size === 0">
+      Delete Selected Tasks
+    </button>
+    <button class="btn btn-primary" (click)="handleActionButtonClick()" [disabled]="isActionButtonDisabled()">
+      {{ getActionButtonText() }}
+    </button>
+  </div>
+
+  <!-- Table Task -->
+  <div class="row g-3">
+    <!-- Column To Do -->
+    <div class="col-md-3">
+      <div class="h-100 p-3 bg-light border rounded-3">
+        <h5 class="text-center mb-3">To Do</h5>
+        <ng-container *ngFor="let task of filteredTasks()">
+          <div
+            *ngIf="task.status === 'To Do'"
+            class="card mb-3"
+            [class.border-primary]="selectedTasks.has(task.id)"
+            (click)="toggleTaskSelection(task.id)"
+          >
+            <div class="card-body">
+              <h5 class="card-title">{{ task.title }}</h5>
+              <h6 class="card-text">{{ task.description }}</h6>
+              <p class="card-text">Date: {{ task.date }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Column In Progress -->
+    <div class="col-md-3">
+      <div class="h-100 p-3 bg-light border rounded-3">
+        <h5 class="text-center mb-3">In Progress</h5>
+        <ng-container *ngFor="let task of filteredTasks()">
+          <div
+            *ngIf="task.status === 'In Progress'"
+            class="card mb-3"
+            [class.border-primary]="selectedTasks.has(task.id)"
+            (click)="toggleTaskSelection(task.id)"
+          >
+            <div class="card-body">
+              <h5 class="card-title">{{ task.title }}</h5>
+              <h6 class="card-text">{{ task.description }}</h6>
+              <p class="card-text">Date: {{ task.date }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Column Done -->
+    <div class="col-md-3">
+      <div class="h-100 p-3 bg-light border rounded-3">
+        <h5 class="text-center mb-3">Done</h5>
+        <ng-container *ngFor="let task of filteredTasks()">
+          <div
+            *ngIf="task.status === 'Done'"
+            class="card mb-3"
+            [class.border-primary]="selectedTasks.has(task.id)"
+            (click)="toggleTaskSelection(task.id)"
+          >
+            <div class="card-body">
+              <h5 class="card-title">{{ task.title }}</h5>
+              <h6 class="card-text">{{ task.description }}</h6>
+              <p class="card-text">Date: {{ task.date }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Column Overdue -->
+    <div class="col-md-3">
+      <div class="h-100 p-3 bg-light border rounded-3">
+        <h5 class="text-center mb-3">Overdue</h5>
+        <ng-container *ngFor="let task of filteredTasks()">
+          <div
+            *ngIf="isOverdue(task.date) && task.status !== 'Done'"
+            class="card mb-3"
+            [class.border-primary]="selectedTasks.has(task.id)"
+            (click)="toggleTaskSelection(task.id)"
+          >
+            <div class="card-body">
+              <h5 class="card-title">{{ task.title }}</h5>
+              <h6 class="card-text">{{ task.description }}</h6>
+              <p class="card-text">Date: {{ task.date }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

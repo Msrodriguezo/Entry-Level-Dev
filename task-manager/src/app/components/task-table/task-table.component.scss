@@ -1,0 +1,60 @@
+/* Estilos para las columnas */
+.row {
+  display: flex;
+  flex-wrap: nowrap; /* Evita que las columnas se envuelvan a la siguiente línea */
+  overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+}
+
+.col-md-3 {
+  flex: 0 0 25%; /* Cada columna ocupa el 25% del ancho */
+  padding: 1rem;
+  background-color: #f8f9fa; // Fondo gris claro
+  border-radius: 8px; // Bordes redondeados
+  margin: 0 0.5rem; // Espaciado entre columnas
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Sombra suave
+
+  h5 {
+    color: #333; // Color del título
+    font-weight: bold;
+  }
+}
+
+/* Estilos para las cards */
+.card {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Sombra más pronunciada al pasar el mouse
+    transform: translateY(-2px); // Efecto de levantar la card
+  }
+
+  &.border-primary {
+    border: 2px solid #007bff; // Borde azul para cards seleccionadas
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: #666;
+  }
+}
+
+/* Estilos para los botones de acción */
+.d-flex {
+  margin-bottom: 2rem;
+
+  .btn {
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+  }
+}

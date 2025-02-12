@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <h1>Task Manager</h1>
     <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
-      <!-- Campo Título -->
+      <!-- Title -->
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input
@@ -14,7 +14,7 @@
         />
       </div>
   
-      <!-- Campo Descripción -->
+      <!-- Description -->
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea
@@ -27,7 +27,7 @@
         ></textarea>
       </div>
   
-      <!-- Campo Fecha -->
+      <!-- Date -->
       <div class="mb-3">
         <label for="date" class="form-label">Expiration date</label>
         <input
@@ -36,11 +36,13 @@
           id="date"
           name="date"
           [(ngModel)]="formData.date"
+          [min]="minDate"
           required
         />
       </div>
-  
-      <!-- Campo Status (Selector) -->
+      
+         
+      <!-- Status -->
       <div class="mb-3">
         <label for="status" class="form-label">Status</label>
         <select
@@ -56,7 +58,7 @@
         </select>
       </div>
   
-      <!-- Botones -->
+      <!-- Buttons -->
       <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">
           Cancel
